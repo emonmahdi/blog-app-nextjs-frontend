@@ -1,30 +1,10 @@
-"use client";
- 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useBlogs } from "../hooks/useBlogs";
+import HomeClient from "@/src/components/HomeClient";
+import { getBlogs } from "../services/blog.api";
 
-export default function HomePage() {
-  const { data, isLoading } = useBlogs();
+export const revalidate = 30; // 🔥 ISR (30 sec)
 
-  if (isLoading) return <p>Loading...</p>;
+export default async function HomePage() {
+  const data = await getBlogs();
 
-  return (
-    <div className="grid grid-cols-3 gap-6 p-6">
-      {data?.map((blog: any) => (
-        <motion.div
-          key={blog._id}
-          whileHover={{ scale: 1.05 }}
-          className="p-4 border rounded-xl shadow"
-        >
-          <h2 className="text-xl font-bold">{blog.title}</h2>
-          <p>{blog.content.slice(0, 100)}</p>
-
-          <Link href={`/blog/${blog._id}`}>
-            Read More →
-          </Link>
-        </motion.div>
-      ))}
-    </div>
-  );
+  return <HomeClient blogs={data} />;
 }
