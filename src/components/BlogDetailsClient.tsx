@@ -40,7 +40,8 @@ export default function BlogDetailsClient() {
 
       {/* Blog Date */}
       <p className="text-sm text-gray-400 mb-6">
-        Published on: {data?.createdAt ? new Date(data.createdAt).toLocaleDateString() : "--"}
+        Published on:{" "}
+        {data?.createdAt ? new Date(data.createdAt).toLocaleDateString() : "--"}
       </p>
 
       {/* Blog Content */}
@@ -51,10 +52,10 @@ export default function BlogDetailsClient() {
       {/* Back Button */}
       <div className="mt-10 flex justify-between items-center">
         <Link
-          href="/"
+          href="/blog"
           className="text-blue-500 hover:underline font-medium"
         >
-          ← Back to Home
+          ← Back to Blog
         </Link>
 
         <button

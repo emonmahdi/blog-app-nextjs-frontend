@@ -10,6 +10,16 @@ export interface IBlog {
   updatedAt: string;
 }
 
+export const createBlog = async (payload: {
+  title: string;
+  content: string;
+  author: string;
+  isPublished: boolean;
+}) => {
+  const res = await axiosInstance.post("/blogs/create-blog", payload);
+  return res.data.data;
+};
+
 export const getBlogs = async () => {
   const res = await axiosInstance.get("/blogs");
   const data = res.data.data;

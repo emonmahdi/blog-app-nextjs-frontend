@@ -23,7 +23,7 @@ import BlogDetails from "@/src/components/BlogDetailsClient";
 
 const BlogDynamicDetails = () => {
   return (
-    <div>
+    <div className="mt-28">
       <BlogDetails />
     </div>
   );
